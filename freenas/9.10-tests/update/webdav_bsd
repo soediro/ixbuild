@@ -15,7 +15,7 @@ webdav_bsd_tests()
   CLASSNAME=ixbuild.resty.functional.create.webdav_bsd
   ## Skipping test due to bug 25239/25240. This will need to be re-enabled when 25239/25240 is 
   resolved.
-  
+  return 0
   local DATASET="webdavshare"
   local DATASET_PATH="/mnt/tank/${DATASET}/"
   local TMP_FILE="/tmp/testfile.txt"
@@ -45,8 +45,8 @@ webdav_bsd_tests()
   check_rest_response "200" || return 1
 
   echo_test_title "Changing password for webdev"
-  rest_request "POST" "/services/services/webdav/" '{ "webdav_password": "'"${SHARE_PASS}"'" }'
-  check_rest_response "201 created"
+  rest_request "PUT" "/services/services/webdav/" '{ "webdav_password": "'"${SHARE_PASS}"'" }'
+  check_rest_response "200 ok"
 
   #check_exit_status and check_service_status commented out
   #echo_test_title "Poll test target to ensure WebDAV service is up and running"
