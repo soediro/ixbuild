@@ -46,7 +46,7 @@ webdav_bsd_tests()
 
   echo_test_title "Changing password for webdev"
   rest_request "POST" "/services/services/webdav/" '{ "webdav_password": "'"${SHARE_PASS}"'" }'
-  check_rest_response "200 ok"
+  check_rest_response "201 created"
 
   #check_exit_status and check_service_status commented out
   #echo_test_title "Poll test target to ensure WebDAV service is up and running"
